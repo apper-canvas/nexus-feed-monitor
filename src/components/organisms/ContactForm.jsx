@@ -145,7 +145,6 @@ if (contact) {
           error={errors.company_c}
           placeholder="Acme Inc."
         />
-
 <FormField
           label="Position"
           value={formData.position_c}
@@ -153,7 +152,6 @@ if (contact) {
           error={errors.position_c}
           placeholder="Sales Manager"
         />
-/>
       </div>
 
       <FormField
