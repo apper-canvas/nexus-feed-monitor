@@ -18,16 +18,16 @@ const Dashboard = () => {
 
   // Calculate metrics
   const totalContacts = contacts.length;
-  const recentContacts = contacts.filter(c => {
-    if (!c.lastContactDate) return false;
-    const lastContact = new Date(c.lastContactDate);
+const recentContacts = contacts.filter(c => {
+    if (!c.last_contact_date_c) return false;
+    const lastContact = new Date(c.last_contact_date_c);
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     return lastContact >= thirtyDaysAgo;
   }).length;
 
-  const companiesCount = new Set(contacts.map(c => c.company)).size;
-  const completedActivities = activities.filter(a => a.completed).length;
+const companiesCount = new Set(contacts.map(c => c.company_c)).size;
+  const completedActivities = activities.filter(a => a.completed_c).length;
 
   return (
     <div className="space-y-8">

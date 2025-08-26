@@ -52,15 +52,15 @@ const ActivityFeed = ({ activities = [] }) => {
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-medium text-gray-900 capitalize">
                     {activity.type}
-                  </p>
+</p>
                   <p className="text-xs text-gray-500">
-                    {format(new Date(activity.timestamp), "MMM dd, HH:mm")}
+                    {format(new Date(activity.timestamp_c), "MMM dd, HH:mm")}
                   </p>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">{activity.description}</p>
-                {activity.contactName && (
+<p className="text-sm text-gray-600 mt-1">{activity.description_c}</p>
+                {activity.contact_name_c && (
                   <p className="text-xs text-gray-500 mt-1">
-                    Related to: {activity.contactName}
+                    Related to: {activity.contact_name_c}
                   </p>
                 )}
               </div>

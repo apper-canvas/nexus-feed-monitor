@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import Button from "@/components/atoms/Button";
-import FormField from "@/components/molecules/FormField";
-import ApperIcon from "@/components/ApperIcon";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import FormField from "@/components/molecules/FormField";
+import Button from "@/components/atoms/Button";
 
 const ContactForm = ({ contact, onSave, onCancel }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    position: "",
-    notes: "",
-    tags: ""
+const [formData, setFormData] = useState({
+    first_name_c: "",
+    last_name_c: "",
+    email_c: "",
+    phone_c: "",
+    company_c: "",
+    position_c: "",
+    notes_c: "",
+    Tags: ""
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (contact) {
       setFormData({
-        firstName: contact.firstName || "",
-        lastName: contact.lastName || "",
-        email: contact.email || "",
-        phone: contact.phone || "",
-        company: contact.company || "",
-        position: contact.position || "",
-        notes: contact.notes || "",
-        tags: Array.isArray(contact.tags) ? contact.tags.join(", ") : ""
+        first_name_c: contact.first_name_c || "",
+        last_name_c: contact.last_name_c || "",
+        email_c: contact.email_c || "",
+        phone_c: contact.phone_c || "",
+        company_c: contact.company_c || "",
+        position_c: contact.position_c || "",
+        notes_c: contact.notes_c || "",
+        Tags: Array.isArray(contact.Tags) ? contact.Tags.join(",") : contact.Tags || ""
       });
     }
   }, [contact]);
@@ -36,22 +36,22 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
+if (!formData.first_name_c.trim()) {
+      newErrors.first_name_c = "First name is required";
     }
 
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
+    if (!formData.last_name_c.trim()) {
+      newErrors.last_name_c = "Last name is required";
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
+if (!formData.email_c.trim()) {
+      newErrors.email_c = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email_c)) {
+      newErrors.email_c = "Email is invalid";
     }
 
-    if (!formData.company.trim()) {
-      newErrors.company = "Company is required";
+    if (!formData.company_c.trim()) {
+      newErrors.company_c = "Company is required";
     }
 
     setErrors(newErrors);
@@ -67,17 +67,16 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
 
     setLoading(true);
 
-    try {
+try {
       const contactData = {
         ...formData,
-        tags: formData.tags.split(",").map(tag => tag.trim()).filter(tag => tag)
+        Tags: formData.Tags ? formData.Tags.split(",").map(tag => tag.trim()).filter(tag => tag).join(",") : ""
       };
 
-      if (contact) {
-        await onSave(contact.Id, contactData);
+      await onSave(contactData);
+if (contact) {
         toast.success("Contact updated successfully!");
       } else {
-        await onSave(contactData);
         toast.success("Contact created successfully!");
       }
     } catch (error) {
@@ -97,87 +96,87 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormField
+<FormField
           label="First Name"
           required
-          value={formData.firstName}
-          onChange={(e) => handleInputChange("firstName", e.target.value)}
-          error={errors.firstName}
+          value={formData.first_name_c}
+          onChange={(e) => handleInputChange("first_name_c", e.target.value)}
+          error={errors.first_name_c}
           placeholder="John"
         />
 
-        <FormField
+<FormField
           label="Last Name"
           required
-          value={formData.lastName}
-          onChange={(e) => handleInputChange("lastName", e.target.value)}
-          error={errors.lastName}
+          value={formData.last_name_c}
+          onChange={(e) => handleInputChange("last_name_c", e.target.value)}
+          error={errors.last_name_c}
           placeholder="Doe"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormField
+<FormField
           label="Email"
           type="email"
           required
-          value={formData.email}
-          onChange={(e) => handleInputChange("email", e.target.value)}
-          error={errors.email}
+          value={formData.email_c}
+          onChange={(e) => handleInputChange("email_c", e.target.value)}
+          error={errors.email_c}
           placeholder="john.doe@company.com"
         />
 
-        <FormField
+<FormField
           label="Phone"
           type="tel"
-          value={formData.phone}
-          onChange={(e) => handleInputChange("phone", e.target.value)}
-          error={errors.phone}
+          value={formData.phone_c}
+          onChange={(e) => handleInputChange("phone_c", e.target.value)}
+          error={errors.phone_c}
           placeholder="+1 (555) 123-4567"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormField
+<FormField
           label="Company"
           required
-          value={formData.company}
-          onChange={(e) => handleInputChange("company", e.target.value)}
-          error={errors.company}
+          value={formData.company_c}
+          onChange={(e) => handleInputChange("company_c", e.target.value)}
+          error={errors.company_c}
           placeholder="Acme Inc."
         />
 
-        <FormField
+<FormField
           label="Position"
-          value={formData.position}
-          onChange={(e) => handleInputChange("position", e.target.value)}
-          error={errors.position}
+          value={formData.position_c}
+          onChange={(e) => handleInputChange("position_c", e.target.value)}
+          error={errors.position_c}
           placeholder="Sales Manager"
         />
+/>
       </div>
 
       <FormField
         label="Tags"
-        value={formData.tags}
-        onChange={(e) => handleInputChange("tags", e.target.value)}
-        placeholder="VIP, Enterprise, Lead (comma separated)"
+        value={formData.Tags}
+        onChange={(e) => handleInputChange("Tags", e.target.value)}
+        placeholder="VIP,Enterprise,Lead (comma separated)"
       />
 
       <FormField
         label="Notes"
-        value={formData.notes}
-        onChange={(e) => handleInputChange("notes", e.target.value)}
+        value={formData.notes_c}
+        onChange={(e) => handleInputChange("notes_c", e.target.value)}
         placeholder="Additional notes about this contact..."
       >
         <textarea
-          value={formData.notes}
-          onChange={(e) => handleInputChange("notes", e.target.value)}
+          value={formData.notes_c}
+          onChange={(e) => handleInputChange("notes_c", e.target.value)}
           placeholder="Additional notes about this contact..."
           rows={4}
           className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:border-primary-500 focus:ring-primary-500 bg-white hover:border-gray-400 resize-none"
         />
       </FormField>
-
       <div className="flex justify-end space-x-3 pt-6 border-t border-gray-200">
         <Button 
           type="button" 

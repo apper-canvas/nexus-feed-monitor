@@ -29,8 +29,8 @@ const ContactTable = ({ contacts, onContactClick, onSort, sortField, sortDirecti
     </button>
   );
 
-  const getInitials = (firstName, lastName) => {
-    return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+const getInitials = (firstName, lastName) => {
+    return `${firstName?.charAt(0) || ''}${lastName?.charAt(0) || ''}`.toUpperCase();
   };
 
   return (
@@ -66,22 +66,22 @@ const ContactTable = ({ contacts, onContactClick, onSort, sortField, sortDirecti
               >
                 <td className="px-6 py-4">
                   <div className="flex items-center space-x-3">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white font-medium text-sm">
-                      {getInitials(contact.firstName, contact.lastName)}
+<div className="h-10 w-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white font-medium text-sm">
+                      {getInitials(contact.first_name_c, contact.last_name_c)}
                     </div>
                     <div>
                       <div className="text-sm font-medium text-gray-900">
-                        {contact.firstName} {contact.lastName}
+                        {contact.first_name_c} {contact.last_name_c}
                       </div>
-                      <div className="text-sm text-gray-500">{contact.position}</div>
+                      <div className="text-sm text-gray-500">{contact.position_c}</div>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">{contact.company}</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{contact.email}</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{contact.phone}</td>
+<td className="px-6 py-4 text-sm text-gray-900">{contact.company_c}</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{contact.email_c}</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{contact.phone_c}</td>
                 <td className="px-6 py-4 text-sm text-gray-600">
-                  {contact.lastContactDate ? format(new Date(contact.lastContactDate), "MMM dd, yyyy") : "Never"}
+                  {contact.last_contact_date_c ? format(new Date(contact.last_contact_date_c), "MMM dd, yyyy") : "Never"}
                 </td>
                 <td className="px-6 py-4 text-right">
                   <button

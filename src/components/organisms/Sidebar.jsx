@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
 import { cn } from "@/utils/cn";
+import { AuthContext } from "@/App";
 
 const Sidebar = ({ isOpen, onClose }) => {
+const { logout } = useContext(AuthContext);
+  
   const navigation = [
     { name: "Dashboard", href: "/", icon: "LayoutDashboard" },
     { name: "Contacts", href: "/contacts", icon: "Users" },
@@ -64,9 +68,21 @@ const Sidebar = ({ isOpen, onClose }) => {
                     {item.name}
                   </>
                 )}
-              </NavLink>
+</NavLink>
             ))}
           </nav>
+          
+          {/* Logout Button */}
+          <div className="p-4 border-t border-gray-200">
+            <Button
+              onClick={logout}
+              variant="ghost"
+              className="w-full justify-start text-gray-700 hover:text-red-600 hover:bg-red-50"
+            >
+              <ApperIcon name="LogOut" size={20} className="mr-3" />
+              Logout
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -121,9 +137,21 @@ const Sidebar = ({ isOpen, onClose }) => {
                     {item.name}
                   </>
                 )}
-              </NavLink>
+</NavLink>
             ))}
           </nav>
+          
+          {/* Logout Button */}
+          <div className="p-4 border-t border-gray-200">
+            <Button
+              onClick={logout}
+              variant="ghost"
+              className="w-full justify-start text-gray-700 hover:text-red-600 hover:bg-red-50"
+            >
+              <ApperIcon name="LogOut" size={20} className="mr-3" />
+              Logout
+            </Button>
+          </div>
         </div>
       </div>
     </>

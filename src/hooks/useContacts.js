@@ -43,7 +43,7 @@ export const useContacts = () => {
   };
 
   const updateContact = async (id, contactData) => {
-    try {
+try {
       const updatedContact = await contactService.update(id, contactData);
       setContacts(prev => prev.map(c => c.Id === id ? updatedContact : c));
       return updatedContact;
