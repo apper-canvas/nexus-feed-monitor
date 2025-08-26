@@ -81,9 +81,9 @@ const CompanyForm = ({ company, onSave, onCancel }) => {
 
     if (formData.website && !/^https?:\/\/.+/.test(formData.website)) {
       newErrors.website = "Please enter a valid website URL (including http:// or https://)";
-    }
+}
 
-    if (formData.phone && !/^[\+]?[\d\s\-\(\)]+$/.test(formData.phone)) {
+    if (formData.phone && !/^[+]?[\d\s\-()]+$/.test(formData.phone)) {
       newErrors.phone = "Please enter a valid phone number";
     }
 
