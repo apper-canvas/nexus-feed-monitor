@@ -335,9 +335,18 @@ export const dealService = {
       }
 
       return null;
-    } catch (error) {
+} catch (error) {
       // Fallback to mock update
       try {
+        // Define stage probabilities for fallback
+        const stageProbabilities = {
+          "Lead": 20,
+          "Qualified": 40,
+          "Proposal": 65,
+          "Negotiation": 80,
+          "Closed Won": 100
+        };
+        
         toast.success(`Deal moved to ${newStage}`);
         return {
           Id: parseInt(dealId),
