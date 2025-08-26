@@ -142,7 +142,8 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/contacts" element={<Contacts onMenuClick={handleMenuClick} />} />
                   <Route path="/deals" element={<Deals />} />
-                  <Route path="/companies" element={<Companies />} />
+<Route path="/companies" element={<Companies />} />
+                  <Route path="/companies/:id" element={<Companies />} />
                   <Route path="/activities" element={<Activities />} />
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/callback" element={<Callback />} />
