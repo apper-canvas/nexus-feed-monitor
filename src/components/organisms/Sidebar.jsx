@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useAuth } from "@/layouts/Root";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import { cn } from "@/utils/cn";
-import { AuthContext } from "@/App";
-
 const Sidebar = ({ isOpen, onClose }) => {
-const { logout } = useContext(AuthContext);
+const { logout } = useAuth();
   
   const navigation = [
     { name: "Dashboard", href: "/", icon: "LayoutDashboard" },
