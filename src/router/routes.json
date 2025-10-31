@@ -1,5 +1,5 @@
 {
-  "/": {
+"/contacts": {
     "allow": {
       "when": {
         "conditions": [
@@ -65,19 +65,6 @@
     }
   },
   "/activities": {
-    "allow": {
-      "when": {
-        "conditions": [
-          {
-            "label": "User must be logged in",
-            "rule": "authenticated"
-          }
-        ]
-      },
-      "redirectOnDeny": "/login"
-    }
-  },
-  "/reports": {
     "allow": {
       "when": {
         "conditions": [
